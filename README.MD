@@ -1,3 +1,14 @@
+# CNeT
+
+This repo contains Perceptrons, Neural Networks entirely implemented in C. Why in C? It's fun and I'm a masochist.
+
+Jokes aside this repo by itself is very simple, I was inspired by Tsoding's vides and decided to revisit my fundamentals and write all of it without
+frameworks or libraries in C.
+
+I'm doing this for half-fun and half solidizing my intuition behind most ML Math. I've outlined my intuition below and in the PDF as well. I think it'll  be quite useful for beginners.  Feel free to take a look at it!
+
+I might do tokenization, embedding and other things in the future when I have free time, the intuition behind it is quite fun. 
+
 ## Why Use Gradients Instead of Simple Trial and Error?
 
 A natural question is: "Why use derivatives/gradients at all? Why not just try adjusting parameters randomly or in fixed increments and see what happens?"
