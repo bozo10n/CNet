@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-# define N 1000
+# define N 1000000000
 
 struct Data{
   int x;
@@ -11,13 +11,18 @@ struct Data{
 float cost(float weight, struct Data arr[5])
 {
     float error = 0;
+    float pavg = 0;
     for(int j = 0; j < 5; j++)
     {
       float pred = arr[j].x * weight;
-      float temp = arr[j].y - pred;
+
+      pavg += pred;
+       float temp = arr[j].y - pred;
       temp *= temp;
       error += temp;
     }
+
+ printf("pred: %f  ", pavg/5.0f);
     return error/5.0f;
 }
 
@@ -35,11 +40,12 @@ int main(void)
 
   // y = x * w + b
 
-  for(int i = 0; i < N; i++)
+  for(int i = 0; i < 100000; i++)
   {
+    weight += 1e-4f;
     printf("epoch: %d ", i);
-    
-    printf("cost: %f\n", cost(weight, arr));
+    float result = cost(weight, arr);
+    printf("cost: %f\n", result);
   }
   
    return 0;
