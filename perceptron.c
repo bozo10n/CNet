@@ -1,14 +1,12 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-# define N 1000000000
-
 struct Data{
   int x;
   int y;
 };
 
-float cost(float weight, struct Data arr[5])
+float cost(float weight, struct Data arr[8])
 {
     float error = 0;
     float pavg = 0;
@@ -21,29 +19,25 @@ float cost(float weight, struct Data arr[5])
       temp *= temp;
       error += temp;
     }
-
- printf("pred: %f  ", pavg/5.0f);
     return error/5.0f;
 }
 
 int main(void)
 {
-  struct Data arr[5] = {
-    {1, 3},
-    {3, 9},
-    {9, 27},
-    {27, 81},
-    {81, 243}
+  struct Data arr[8] = {
+   {2, 6},     {3, 9},     {4, 12},     {5, 15},     {6, 18},     {7, 21},     {8, 24},     {9, 27}
   };
 
-  float weight = 0.00000045;
-
+  float weight = 1e-3;
+  float learning_rate = 1e-3;
   // y = x * w + b
-
-  for(int i = 0; i < 100000; i++)
+  float h = 1e-5;
+  for(int i = 0; i < 500; i++)
   {
-    weight += 1e-4f;
+    float gradient = (cost(weight + h, arr) - cost(weight, arr))/h;
+    weight = weight - learning_rate *  gradient; 
     printf("epoch: %d ", i);
+     printf("weight: %f ", weight);
     float result = cost(weight, arr);
     printf("cost: %f\n", result);
   }
