@@ -9,6 +9,14 @@ I'm doing this for half-fun and half solidizing my intuition behind most ML Math
 
 I might do tokenization, embedding and other things in the future when I have free time, the intuition behind it is quite fun. 
 
+Some ToDos
+
+```
+1. I've implemented a perceptron and modelled some basic data. 
+2. Next we're going to implement a MLP for non linear data, I'm kinda split between XOR gates & iris dataset for differing reasons. I'll figure it out later.
+3. I have to rewrite the documentation for a more intuitive build up I guess. 
+4. AutoGrad and Matrices with SIMD  
+```
 ## Why Use Gradients Instead of Simple Trial and Error?
 
 A natural question is: "Why use derivatives/gradients at all? Why not just try adjusting parameters randomly or in fixed increments and see what happens?"
