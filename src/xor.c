@@ -27,7 +27,7 @@ struct Params {
 
 float randw() { return ((rand()/(float)RAND_MAX) - 0.5f) * 0.2f; }
 
-float sigmoid(float x)
+float tan_h(float x)
 {
   return (exp(x) - exp(-x))/(exp(x) + exp(-x));
 }
@@ -41,12 +41,12 @@ float mse(struct Params params,  struct Data arr[4])
     float output_1  = (params.weight1 * arr[i].x1) + (params.weight2 * arr[i].x2) + params.bias1;
 
     float output_2 = (params.weight3 * arr[i].x1) + (params.weight4 * arr[i].x2) + params.bias2;
-    output_1 = sigmoid(output_1);
+    output_1 = tan_h(output_1);
 
-    output_2 = sigmoid(output_2);
+    output_2 = tan_h(output_2);
     float pred = params.weight5 * output_1 + params.weight6 * output_2 + params.bias3;
 
-    pred = sigmoid(pred);
+    pred = tan_h(pred);
      float tempError = arr[i].y - pred;
 
     tempError *= tempError;
