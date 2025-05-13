@@ -29,7 +29,7 @@ float randw() { return ((rand()/(float)RAND_MAX) - 0.5f) * 0.2f; }
 
 float sigmoid(float x)
 {
-  return  1/(1 + exp(-x));
+  return (exp(x) - exp(-x))/(exp(x) + exp(-x));
 }
 
 
@@ -91,9 +91,9 @@ int main(void)
   
   float h = 1e-3;
   float learning_rate = 1e-1;
-  for(int i = 0; i < 100000; i++)
+  for(int i = 0; i < 10000*10; i++)
   {
-       float fa = mse(params, arr); // Use the correct mse signature
+        float fa = mse(params, arr); 
 
         // --- Calculate Gradients using numerical 
         struct Params temp_params;
@@ -165,7 +165,7 @@ int main(void)
 
         params.weight5 -= learning_rate * gradient_w5;
         params.weight6 -= learning_rate * gradient_w6;
-        params.bias3 -= learning_rate * gradient_b3; // Update the output bias
+        params.bias3 -= learning_rate * gradient_b3; 
 
         printf("cost: %f \n", mse(params,  arr));
   }
