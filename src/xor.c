@@ -176,5 +176,12 @@ int main(void)
 
         printf("cost: %f \n", mse(params,  arr));
   }
+
+  float  c_a, c_b;
+
+  printf("Give your custom params for the model pred, input1, input2:\n");
+  scanf("%f %f", &c_a, &c_b);
+
+  printf("Result: %f\n", forward(params, c_a, c_b));
   return 0;
 }
