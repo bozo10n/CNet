@@ -32,21 +32,28 @@ float tan_h(float x)
   return (exp(x) - exp(-x))/(exp(x) + exp(-x));
 }
 
+float forward(struct Params params, float input1, float input2)
+{
+  
+   float neuron_output_1  = (params.weight1 * input1) + (params.weight2 * input2) + params.bias1;
+
+   float neuron_output_2 = (params.weight3 * input1) + (params.weight4 * input2) + params.bias2;
+
+   neuron_output_1  = tan_h(neuron_output_1);
+
+   neuron_output_2  = tan_h(neuron_output_2);
+
+   float pred = params.weight5 * neuron_output_1  + params.weight6 * neuron_output_2 + params.bias3;
+
+   return tan_h(pred);
+}
 
 float mse(struct Params params,  struct Data arr[4])
 {
   float temp = 0;
   for(int i = 0; i < 4; i++)
   {
-    float output_1  = (params.weight1 * arr[i].x1) + (params.weight2 * arr[i].x2) + params.bias1;
-
-    float output_2 = (params.weight3 * arr[i].x1) + (params.weight4 * arr[i].x2) + params.bias2;
-    output_1 = tan_h(output_1);
-
-    output_2 = tan_h(output_2);
-    float pred = params.weight5 * output_1 + params.weight6 * output_2 + params.bias3;
-
-    pred = tan_h(pred);
+     float pred = forward(params, arr[i].x1, arr[i].x2);
      float tempError = arr[i].y - pred;
 
     tempError *= tempError;
