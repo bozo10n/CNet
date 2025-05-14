@@ -64,39 +64,10 @@ float mse(struct Params params,  struct Data arr[4])
   return temp/4.0f;
 }
 
-int main(void)
+void backward(struct Params params, struct Data arr[4])
 {
-  srand((unsigned)time(NULL));
-  // for you ignorant fucks xor logic gate is just binary addition...
-  // 0 + 0, 1 + 0 is all intuitive but 1 + 1 = 0 cus integer overflow, this xor gates truth table is non linear is not modellable by a single neuron or perceptron :)
-  struct Data arr[4] = {
-    {0, 0, 0},
-    {1, 0, 1},
-    {0, 1, 1},
-    {1, 1, 0}
-  };
-
-  struct Params params;
-
-  params.weight1 = randw();
-
-  params.weight2 = randw();
-
-  params.weight3 = randw();
-
-  params.weight4 = randw();
   
-  params.weight5 = randw();
-
-  params.weight6 = randw();
-
-  params.bias1 = randw();
-
-  params.bias2 = randw();
-
-  params.bias3 = randw();
-  
-  float h = 1e-3;
+ float h = 1e-3;
   float learning_rate = 1e-1;
   for(int i = 0; i < 10000*10; i++)
   {
@@ -177,6 +148,41 @@ int main(void)
         printf("cost: %f \n", mse(params,  arr));
   }
 
+}
+
+int main(void)
+{
+  srand((unsigned)time(NULL));
+  // for you ignorant fucks xor logic gate is just binary addition...
+  // 0 + 0, 1 + 0 is all intuitive but 1 + 1 = 0 cus integer overflow, this xor gates truth table is non linear is not modellable by a single neuron or perceptron :)
+  struct Data arr[4] = {
+    {0, 0, 0},
+    {1, 0, 1},
+    {0, 1, 1},
+    {1, 1, 0}
+  };
+
+  struct Params params;
+
+  params.weight1 = randw();
+
+  params.weight2 = randw();
+
+  params.weight3 = randw();
+
+  params.weight4 = randw();
+  
+  params.weight5 = randw();
+
+  params.weight6 = randw();
+
+  params.bias1 = randw();
+
+  params.bias2 = randw();
+
+  params.bias3 = randw();
+
+  backward(params, arr);  
   float  c_a, c_b;
 
   printf("Give your custom params for the model pred, input1, input2:\n");
